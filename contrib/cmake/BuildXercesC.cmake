@@ -58,8 +58,8 @@ if(MSVC)
 		)
 else()
 	externalproject_add(xerces-c
-		URL http://www.apache.org/dist/xerces/c/3/sources/xerces-c-3.1.4.tar.gz
-		URL_MD5 21bb097b711a513275379b59757cba4c
+		URL http://www.apache.org/dist/xerces/c/3/sources/xerces-c-3.2.1.tar.gz
+		URL_MD5 fe951ca5d93713db31b026fab2d042d7
 		BUILD_IN_SOURCE 0
 		PREFIX ${CMAKE_BINARY_DIR}/deps/xerces-c
 		CONFIGURE_COMMAND 
