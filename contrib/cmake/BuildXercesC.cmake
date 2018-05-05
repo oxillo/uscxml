@@ -49,6 +49,7 @@ if(MSVC)
 		# INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory Build/Win64/${VC_VERSION}/Static\ Release/ ${CMAKE_BINARY_DIR}/deps/xerces-c/lib/ && ${CMAKE_COMMAND} -E copy_directory src/ ${CMAKE_BINARY_DIR}/deps/xerces-c/include/
 		)
 	set(XercesC_INCLUDE_DIRS ${CMAKE_INSTALL_DIR}/xerces-c/include)
+	message(STATUS "xercec at ${XercesC_INCLUDE_DIRS}")
 else()
 	externalproject_add(xerces-c
 		URL http://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.2.1.tar.gz
