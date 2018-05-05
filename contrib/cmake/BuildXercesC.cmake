@@ -40,14 +40,15 @@ if(MSVC)
 	externalproject_add(xerces-c
 		URL http://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.2.1.tar.gz
 		URL_MD5 fe951ca5d93713db31b026fab2d042d7
-		BUILD_IN_SOURCE 1
-		PREFIX ${CMAKE_BINARY_DIR}/deps/xerces-c		
-		BUILD_COMMAND nmake
-		CMAKE_ARGS "-G@CMAKE_GENERATOR@"
-		INSTALL_DIR "${CMAKE_BINARY_DIR}/deps/xerces-c"
+		BUILD_IN_SOURCE 0
+		PREFIX deps/xerces-c
+		BUILD_COMMAND nmake 
+		CMAKE_ARGS "-G${CMAKE_GENERATOR}"
+		# INSTALL_DIR "${CMAKE_BINARY_DIR}/deps/xerces-c"
 		# BUILD_COMMAND cd ${VSPROJECT_PATH} && msbuild /p:Configuration=Static\ Release /p:Platform=x64 /p:RuntimeLibrary=MD_DynamicRelease ${VC_PLATFORM} /t:build XercesLib.vcxproj
 		# INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory Build/Win64/${VC_VERSION}/Static\ Release/ ${CMAKE_BINARY_DIR}/deps/xerces-c/lib/ && ${CMAKE_COMMAND} -E copy_directory src/ ${CMAKE_BINARY_DIR}/deps/xerces-c/include/
 		)
+	set(XercesC_INCLUDE_DIRS ${CMAKE_INSTALL_DIR}/xerces-c/include)
 else()
 	externalproject_add(xerces-c
 		URL http://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.2.1.tar.gz
@@ -60,11 +61,12 @@ else()
 			"--enable-shared"
 			"--prefix=<INSTALL_DIR>"
 	)
+	set(XercesC_INCLUDE_DIRS ${CMAKE_BINARY_DIR}/deps/xerces-c/include)
 endif()	
 
 # TODO: --with-curl=DIR 
 
-set(XercesC_INCLUDE_DIRS ${CMAKE_BINARY_DIR}/deps/xerces-c/include)
+
 
 if (APPLE)
 	set(XercesC_LIBRARIES ${CMAKE_BINARY_DIR}/deps/xerces-c/lib/libxerces-c.dylib)
