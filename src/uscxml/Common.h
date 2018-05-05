@@ -20,7 +20,12 @@
 #ifndef COMMON_H_YZ3CIYP
 #define COMMON_H_YZ3CIYP
 
+#include <xercesc/util/XercesVersion.hpp>
+#ifdef XERCES_CPP_NAMESPACE
+#define XERCESC_NS XERCES_CPP_NAMESPACE
+#else
 #define XERCESC_NS xercesc_3_1
+#endif
 
 #ifndef _MSC_VER
 #define ELPP_STACKTRACE_ON_CRASH 1
