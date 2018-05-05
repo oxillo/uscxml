@@ -6,28 +6,41 @@ environment:
   matrix:
     - configuration: Visual Studio 12.0
       platform: x86
+      cmake_generator : "NMake Makefiles"
+      make_cmd : nmake
 
     - configuration: Visual Studio 12.0
       platform: x64
+      cmake_generator : "NMake Makefiles"
+      make_cmd : nmake
 
     - configuration: Visual Studio 14.0
       platform: x86
+      cmake_generator : "NMake Makefiles"
+      make_cmd : nmake
 
     - configuration: Visual Studio 14.0
       platform: x64
-      
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      platform: x86
-      BUILDER: VS
+      cmake_generator : "NMake Makefiles"
+      make_cmd : nmake
       
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       platform: x86
       BUILDER: MSYS2
+      cmake_generator : "MSYS Makefiles"
+      make_cmd : make
+      
+init:
+    - set MSYS2_PATH=c:\msys64
+    - set CHERE_INVOKING=1
+    - if "%BUILDER%_%platform%"=="MSYS2_x86" set MSYSTEM=MINGW32
+    - if "%BUILDER%_%platform%"=="MSYS2_x64" set MSYSTEM=MINGW64
+#    - '%MSYS2_PATH%\usr\bin\bash -lc "pacman --noconfirm -S --needed unzip rsync"'
 
 before_build:
     - call "%ProgramFiles(x86)%\Microsoft %configuration%\VC\vcvarsall.bat" %platform%
     - mkdir build
     - cd build
-    - cmake -G "NMake Makefiles" ..
+    - cmake -G %cmake_generator% ..
 
-build_script: nmake
+build_script: %make_cmd%
