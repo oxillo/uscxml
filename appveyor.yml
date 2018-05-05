@@ -15,6 +15,14 @@ environment:
 
     - configuration: Visual Studio 14.0
       platform: x64
+      
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      platform: x86
+      BUILDER: VS
+      
+    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
+      platform: x86
+      BUILDER: MSYS2
 
 before_build:
     - call "%ProgramFiles(x86)%\Microsoft %configuration%\VC\vcvarsall.bat" %platform%
