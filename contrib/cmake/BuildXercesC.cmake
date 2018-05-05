@@ -44,7 +44,7 @@ if(MSVC)
 		PREFIX ${CMAKE_BINARY_DIR}/deps/xerces-c		
 		BUILD_COMMAND nmake
 		CMAKE_ARGS "-G@CMAKE_GENERATOR@"
-		INSTALL_DIR ""
+		INSTALL_DIR "${CMAKE_BINARY_DIR}/deps/xerces-c"
 		# BUILD_COMMAND cd ${VSPROJECT_PATH} && msbuild /p:Configuration=Static\ Release /p:Platform=x64 /p:RuntimeLibrary=MD_DynamicRelease ${VC_PLATFORM} /t:build XercesLib.vcxproj
 		# INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory Build/Win64/${VC_VERSION}/Static\ Release/ ${CMAKE_BINARY_DIR}/deps/xerces-c/lib/ && ${CMAKE_COMMAND} -E copy_directory src/ ${CMAKE_BINARY_DIR}/deps/xerces-c/include/
 		)
