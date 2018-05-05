@@ -43,4 +43,5 @@ before_build:
     - cd build
     - cmake -G %cmake_generator% ..
 
-build_script: %make_cmd%
+build_script: 
+    - '%make_cmd%'
