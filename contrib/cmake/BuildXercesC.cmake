@@ -42,7 +42,7 @@ if(MSVC)
 		URL_MD5 fe951ca5d93713db31b026fab2d042d7
 		BUILD_IN_SOURCE 0
 		PREFIX ${CMAKE_BINARY_DIR}/deps/xerces-c
-		BUILD_COMMAND cmake.exe --build .
+		BUILD_COMMAND cmake.exe --build . --config Release
 		CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX:STRING=${CMAKE_BINARY_DIR}/deps/xerces-c"
 		# INSTALL_DIR "${CMAKE_BINARY_DIR}/deps/xerces-c"
 		# BUILD_COMMAND cd ${VSPROJECT_PATH} && msbuild /p:Configuration=Static\ Release /p:Platform=x64 /p:RuntimeLibrary=MD_DynamicRelease ${VC_PLATFORM} /t:build XercesLib.vcxproj
