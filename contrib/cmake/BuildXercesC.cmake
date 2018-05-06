@@ -41,14 +41,16 @@ if(MSVC)
 		URL http://archive.apache.org/dist/xerces/c/3/sources/xerces-c-3.2.1.tar.gz
 		URL_MD5 fe951ca5d93713db31b026fab2d042d7
 		BUILD_IN_SOURCE 0
-		PREFIX deps/xerces-c
-		BUILD_COMMAND nmake 
-		CMAKE_ARGS "-G${CMAKE_GENERATOR}"
+		PREFIX ${CMAKE_BINARY_DIR}/deps/xerces-c
+		BUILD_COMMAND cmake.exe --build . --target help
+		#CMAKE_ARGS "-G${CMAKE_GENERATOR}" "-D CMAKE_INSTALL_PREFIX:<type>=${CMAKE_BINARY_DIR}/deps/xerces-c"
 		# INSTALL_DIR "${CMAKE_BINARY_DIR}/deps/xerces-c"
 		# BUILD_COMMAND cd ${VSPROJECT_PATH} && msbuild /p:Configuration=Static\ Release /p:Platform=x64 /p:RuntimeLibrary=MD_DynamicRelease ${VC_PLATFORM} /t:build XercesLib.vcxproj
 		# INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory Build/Win64/${VC_VERSION}/Static\ Release/ ${CMAKE_BINARY_DIR}/deps/xerces-c/lib/ && ${CMAKE_COMMAND} -E copy_directory src/ ${CMAKE_BINARY_DIR}/deps/xerces-c/include/
+		LOG_BUILD 1
+		LOG_INSTALL 1  
 		)
-	set(XercesC_INCLUDE_DIRS ${CMAKE_INSTALL_DIR}/xerces-c/include)
+	set(XercesC_INCLUDE_DIRS ${CMAKE_BINARY_DIR}/deps/xerces-c/include)
 	message(STATUS "xercec at ${XercesC_INCLUDE_DIRS}")
 else()
 	externalproject_add(xerces-c
